@@ -1,0 +1,51 @@
+version: 2.1
+
+orbs:
+  node: circleci/node@5
+
+jobs:
+  test:
+    docker:
+      - image: cimg/node:22.14
+    steps:
+      - checkout
+      - node/install-packages:
+          pkg-manager: yarn
+      - run:
+          name: Type check
+          command: yarn tsc --project tsconfig.app.json --noEmit
+      - run:
+          name: Lint
+          command: yarn lint
+      - run:
+          name: Unit & integration tests
+          command: yarn test --ci --coverage --reporters=default --reporters=jest-junit
+          environment:
+            JEST_JUNIT_OUTPUT_DIR: test-results
+      - store_test_results:
+          path: test-results
+      - store_artifacts:
+          path: coverage
+          destination: coverage
+
+  build:
+    docker:
+      - image: cimg/node:22.14
+    steps:
+      - checkout
+      - node/install-packages:
+          pkg-manager: yarn
+      - run:
+          name: Production build
+          command: yarn build
+      - store_artifacts:
+          path: dist
+          destination: dist
+
+workflows:
+  ci:
+    jobs:
+      - test
+      - build:
+          requires:
+            - test
