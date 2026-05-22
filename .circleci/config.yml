@@ -45,15 +45,7 @@ jobs:
 workflows:
   ci:
     jobs:
-      - test:
-          filters:
-            branches:
-              only:
-                - master
+      - test
       - build:
           requires:
             - test
-          filters:
-            branches:
-              only:
-                - master
