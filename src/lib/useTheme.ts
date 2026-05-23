@@ -6,8 +6,13 @@ function readStored(): Theme {
   try {
     const stored = localStorage.getItem("theme");
     if (stored === "dark" || stored === "light") return stored;
-  } catch {}
-  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  } catch (error: unknown) {
+    if (error instanceof Error)
+      throw new Error(error.message, { cause: error });
+  }
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
 }
 
 export function useTheme() {
@@ -15,7 +20,12 @@ export function useTheme() {
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
-    try { localStorage.setItem("theme", theme); } catch {}
+    try {
+      localStorage.setItem("theme", theme);
+    } catch (error) {
+      if (error instanceof Error)
+        throw new Error(error.message, { cause: error });
+    }
   }, [theme]);
 
   const toggle = () => setTheme((t) => (t === "light" ? "dark" : "light"));
