@@ -2,10 +2,13 @@ import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Accordion } from "./Accordion";
 
-const setup = (props?: Partial<React.ComponentProps<typeof Accordion>>) => {
+const setup = (props?: { defaultOpen?: boolean }) => {
   render(
-    <Accordion title="Test Title" {...props}>
-      <p>Panel content</p>
+    <Accordion {...props}>
+      <Accordion.Trigger>Test Title</Accordion.Trigger>
+      <Accordion.Content>
+        <p>Panel content</p>
+      </Accordion.Content>
     </Accordion>,
   );
 };
