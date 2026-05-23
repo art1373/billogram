@@ -6,14 +6,14 @@ export function InfoItem({ icon, text, link }: InfoItemProps) {
       <span aria-hidden="true" className="mt-0.5 shrink-0">
         {icon}
       </span>
-      <span className="text-sm text-gray-700">
+      <span className="text-sm text-gray-700 dark:text-gray-300">
         {text}
         {link && (
           <>
             {" "}
             <a
               href={link.href}
-              className="underline underline-offset-2 hover:text-gray-900 transition-colors"
+              className="underline underline-offset-2 hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
             >
               {link.label}
             </a>

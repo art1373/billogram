@@ -20,11 +20,11 @@ export function AccordionSection({
       <Accordion.Content>
         <ul className="mb-5 list-none space-y-1 p-0" aria-label="Benefits">
           <InfoItem
-            icon={<Rocket size={20} className="text-blue-500" />}
+            icon={<Rocket size={20} className="text-blue-500 dark:text-blue-400" />}
             text="Snabbare betalning av framtida fakturor."
           />
           <InfoItem
-            icon={<ShieldCheck size={20} className="text-green-600" />}
+            icon={<ShieldCheck size={20} className="text-green-600 dark:text-green-400" />}
             text="Säker koppling till din bank."
             link={{ href: linkValueForTracking, label: "Läs mer" }}
           />

@@ -11,7 +11,7 @@ export function AccordionRoot({ defaultOpen = false, children, className }: Acco
 
   return (
     <AccordionContext.Provider value={{ isOpen, setIsOpen, headerId, panelId }}>
-      <div className={cn("rounded-2xl border border-gray-100 bg-white shadow-sm", className)}>
+      <div className={cn("rounded-2xl border border-gray-100 bg-white shadow-sm dark:border-[#2c2c36] dark:bg-[#18181d] dark:shadow-none", className)}>
         {children}
       </div>
     </AccordionContext.Provider>

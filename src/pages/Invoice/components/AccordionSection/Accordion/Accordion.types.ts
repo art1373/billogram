@@ -15,7 +15,7 @@ export interface AccordionProps {
 
 export interface AccordionTriggerProps {
   children: ReactNode;
-  icon: ReactNode;
+  icon?: ReactNode;
   className?: string;
 }
 
