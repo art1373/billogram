@@ -20,7 +20,7 @@ export function AccordionTrigger({
         className={cn(
           "flex w-full items-center justify-between px-5 py-4",
           "rounded-2xl text-left font-semibold text-gray-900 text-base",
-          "transition-colors duration-150",
+          "transition-colors duration-150 motion-reduce:transition-none",
           "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-gray-900",
           className,
         )}
@@ -31,7 +31,7 @@ export function AccordionTrigger({
           className={cn(
             "ml-3 flex h-8 w-8 shrink-0 items-center justify-center",
             "rounded-full border border-gray-200",
-            "transition-transform duration-200 cursor-pointer",
+            "transition-transform duration-200 motion-reduce:transition-none cursor-pointer",
             isOpen ? "rotate-0" : "rotate-180",
           )}
         >

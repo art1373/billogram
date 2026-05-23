@@ -11,10 +11,10 @@ export function AccordionContent({ children, className }: AccordionContentProps)
       role="region"
       aria-labelledby={headerId}
       aria-hidden={!isOpen}
+      className="[transition:grid-template-rows_250ms_cubic-bezier(0.4,0,0.2,1)] motion-reduce:transition-none"
       style={{
         display: "grid",
         gridTemplateRows: isOpen ? "1fr" : "0fr",
-        transition: "grid-template-rows 250ms cubic-bezier(0.4, 0, 0.2, 1)",
       }}
     >
       <div className="overflow-hidden">
