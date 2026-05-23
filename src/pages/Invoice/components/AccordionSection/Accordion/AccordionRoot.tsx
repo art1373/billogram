@@ -3,7 +3,11 @@ import { cn } from "../../../../../lib/cn";
 import { AccordionContext } from "./AccordionContext";
 import type { AccordionProps } from "./Accordion.types";
 
-export function AccordionRoot({ defaultOpen = false, children, className }: AccordionProps) {
+export function AccordionRoot({
+  defaultOpen = false,
+  children,
+  className,
+}: AccordionProps) {
   const [isOpen, setIsOpen] = useState(defaultOpen);
   const uid = useId();
   const headerId = `${uid}-header`;
@@ -11,7 +15,12 @@ export function AccordionRoot({ defaultOpen = false, children, className }: Acco
 
   return (
     <AccordionContext.Provider value={{ isOpen, setIsOpen, headerId, panelId }}>
-      <div className={cn("rounded-2xl border border-gray-100 bg-white shadow-sm dark:border-[#2c2c36] dark:bg-[#18181d] dark:shadow-none", className)}>
+      <div
+        className={cn(
+          "rounded-2xl border border-gray-100 bg-white shadow-sm dark:border-[#2c2c36] dark:bg-[#5b5b61]",
+          className,
+        )}
+      >
         {children}
       </div>
     </AccordionContext.Provider>
