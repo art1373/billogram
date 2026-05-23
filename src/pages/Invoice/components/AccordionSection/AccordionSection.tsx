@@ -1,8 +1,11 @@
 import { Rocket, ShieldCheck } from "lucide-react";
-import { Accordion } from "../Accordion/Accordion";
-import { Button } from "../Button/Button";
+import { Accordion } from "./Accordion/Accordion";
+import { Button } from "../../../../components/Button/Button";
 import { InfoItem } from "./InfoItem/InfoItem";
 import type { AccordionSectionProps } from "./AccordionSection.types";
+
+const linkValueForTracking =
+  "https://www.billogram.com/sv/blogg/varldens-basta-enkla-betalning";
 
 export function AccordionSection({
   defaultOpen = true,
@@ -19,7 +22,7 @@ export function AccordionSection({
         <InfoItem
           icon={<ShieldCheck size={20} className="text-green-600" />}
           text="Säker koppling till din bank."
-          link={{ href: "#", label: "Läs mer" }}
+          link={{ href: linkValueForTracking, label: "Läs mer" }}
         />
       </ul>
 

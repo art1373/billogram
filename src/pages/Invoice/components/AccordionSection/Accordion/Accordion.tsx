@@ -1,7 +1,7 @@
 import { useState, useId } from "react";
 import { ChevronUp } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
-import { cn } from "../../lib/cn";
+import { cn } from "../../../../../lib/cn";
 import type { AccordionProps } from "./Accordion.types";
 
 export function Accordion({

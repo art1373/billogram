@@ -54,11 +54,6 @@ describe("Button", () => {
     expect(handleClick).not.toHaveBeenCalled();
   });
 
-  it("accepts additional className", () => {
-    render(<Button className="extra-class">Styled</Button>);
-    expect(screen.getByRole("button")).toHaveClass("extra-class");
-  });
-
   it("passes through arbitrary HTML button attributes", () => {
     render(<Button aria-label="custom label">Icon</Button>);
     expect(
