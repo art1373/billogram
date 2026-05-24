@@ -2,7 +2,7 @@ import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { Accordion } from "./Accordion";
 
-const setup = (props?: { defaultOpen?: boolean }) => {
+const setup = (props?: { defaultOpen?: boolean; isLoading?: boolean }) => {
   render(
     <Accordion {...props}>
       <Accordion.Trigger>Test Title</Accordion.Trigger>
@@ -119,6 +119,44 @@ describe("Accordion", () => {
       expect(btn).toHaveAttribute("aria-expanded", "false");
       await userEvent.click(btn);
       expect(btn).toHaveAttribute("aria-expanded", "true");
+    });
+  });
+
+  describe("loading state", () => {
+    it('sets aria-busy="true" on the trigger button', () => {
+      setup({ isLoading: true });
+
+      expect(screen.getByRole("button")).toHaveAttribute("aria-busy", "true");
+    });
+
+    it('sets aria-busy="false" when not loading', () => {
+      setup();
+
+      expect(screen.getByRole("button")).toHaveAttribute("aria-busy", "false");
+    });
+
+    it("does not open the panel when clicked while loading", async () => {
+      setup({ isLoading: true }); // defaultOpen=false
+
+      await userEvent.click(screen.getByRole("button"));
+
+      expect(screen.queryByRole("region")).not.toBeInTheDocument();
+      expect(screen.getByRole("button")).toHaveAttribute(
+        "aria-expanded",
+        "false",
+      );
+    });
+
+    it("does not close the panel when clicked while loading", async () => {
+      setup({ defaultOpen: true, isLoading: true });
+
+      await userEvent.click(screen.getByRole("button"));
+
+      expect(screen.getByRole("region")).toBeVisible();
+      expect(screen.getByRole("button")).toHaveAttribute(
+        "aria-expanded",
+        "true",
+      );
     });
   });
 

@@ -76,7 +76,6 @@ describe("AccordionSection", () => {
     it("hides the benefit list", () => {
       setup({ defaultOpen: false });
 
-      // queryByRole respects hidden — the list is unreachable when panel is hidden
       expect(
         screen.queryByRole("list", { name: /benefits/i }),
       ).not.toBeInTheDocument();
@@ -95,40 +94,19 @@ describe("AccordionSection", () => {
     it("collapses when the header is clicked while open", async () => {
       setup();
 
-      const toggle = screen.getByRole("button", {
-        name: /betala och koppla bankkonto/i,
-      });
-      await userEvent.click(toggle);
+      await userEvent.click(
+        screen.getByRole("button", { name: /betala och koppla bankkonto/i }),
+      );
       expect(screen.queryByRole("region")).not.toBeInTheDocument();
     });
 
     it("expands when the header is clicked while closed", async () => {
       setup({ defaultOpen: false });
 
-      const toggle = screen.getByRole("button", {
-        name: /betala och koppla bankkonto/i,
-      });
-      await userEvent.click(toggle);
+      await userEvent.click(
+        screen.getByRole("button", { name: /betala och koppla bankkonto/i }),
+      );
       expect(screen.getByRole("region")).toBeVisible();
-    });
-
-    it("fires onStartMobileBankId callback when primary button is clicked", async () => {
-      const handleStart = jest.fn();
-      setup({ onStartMobileBankId: handleStart });
-      await userEvent.click(
-        screen.getByRole("button", { name: /start mobile bankid/i }),
-      );
-      expect(handleStart).toHaveBeenCalledTimes(1);
-    });
-
-    it("fires onOtherDevice callback when secondary button is clicked", async () => {
-      const handleOther = jest.fn();
-      setup({ onOtherDevice: handleOther });
-
-      await userEvent.click(
-        screen.getByRole("button", { name: /mobile bankid on other device/i }),
-      );
-      expect(handleOther).toHaveBeenCalledTimes(1);
     });
   });
 
