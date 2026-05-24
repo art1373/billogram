@@ -10,7 +10,7 @@ export function Header() {
     <header
       className={cn(
         "fixed inset-x-0 top-0 z-50 flex h-14 items-center justify-between border-b px-5",
-        "bg-(--color-header-bg) border-(--color-header-border) backdrop-blur-[12px]",
+        "bg-(--color-header-bg) border-(--color-header-border) backdrop-blur-md",
       )}
     >
       <span className="text-base font-bold tracking-tight text-(--color-billogram) transition-colors duration-250">
