@@ -1,5 +1,11 @@
-import { useState, useRef } from "react";
-import { ChevronUp, CircleCheck, CircleX, Rocket, ShieldCheck } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
+import {
+  ChevronUp,
+  CircleCheck,
+  CircleX,
+  Rocket,
+  ShieldCheck,
+} from "lucide-react";
 import { Accordion } from "./Accordion/Accordion";
 import { Button } from "../../../../components/Button/Button";
 import { InfoItem } from "./InfoItem/InfoItem";
@@ -10,14 +16,19 @@ import {
   hintMessages,
   startAuth,
 } from "../../../../lib/fakeBankId";
-import type { FailedHintCode, PendingHintCode } from "../../../../lib/fakeBankId";
+import type {
+  FailedHintCode,
+  PendingHintCode,
+} from "../../../../lib/fakeBankId";
 
 const linkValueForTracking =
   "https://www.billogram.com/sv/blogg/varldens-basta-enkla-betalning";
 
 type FlowState = "idle" | "loading" | "complete" | "failed";
 
-export function AccordionSection({ defaultOpen = true }: AccordionSectionProps) {
+export function AccordionSection({
+  defaultOpen = true,
+}: AccordionSectionProps) {
   const [flowState, setFlowState] = useState<FlowState>("idle");
   const [statusMessage, setStatusMessage] = useState<string>("");
   const [completionName, setCompletionName] = useState<string>("");
@@ -25,7 +36,21 @@ export function AccordionSection({ defaultOpen = true }: AccordionSectionProps) 
   const orderRefRef = useRef<string | null>(null);
   const cancelledRef = useRef(false);
 
+  const statusRef = useRef<HTMLParagraphElement>(null);
+  const completeRef = useRef<HTMLParagraphElement>(null);
+  const failedRef = useRef<HTMLParagraphElement>(null);
+
   const isLoading = flowState === "loading";
+
+  useEffect(() => {
+    if (flowState === "loading" && statusMessage) {
+      statusRef.current?.focus();
+    } else if (flowState === "complete") {
+      completeRef.current?.focus();
+    } else if (flowState === "failed") {
+      failedRef.current?.focus();
+    }
+  }, [flowState, statusMessage]);
 
   async function runBankIdFlow() {
     setFlowState("loading");
@@ -79,7 +104,6 @@ export function AccordionSection({ defaultOpen = true }: AccordionSectionProps) 
       </Accordion.Trigger>
 
       <Accordion.Content>
-        {/* ── Idle / Loading ─────────────────────────────────── */}
         {(flowState === "idle" || flowState === "loading") && (
           <>
             <ul className="mb-5 list-none space-y-1 p-0" aria-label="Benefits">
@@ -101,11 +125,12 @@ export function AccordionSection({ defaultOpen = true }: AccordionSectionProps) 
               />
             </ul>
 
-            {/* Status message shown while polling */}
             {isLoading && (
               <p
+                ref={statusRef}
                 aria-live="polite"
-                className="mb-4 text-sm text-gray-500 dark:text-gray-400"
+                tabIndex={-1}
+                className="mb-4 text-sm text-gray-500 dark:text-gray-400 focus:outline-none"
               >
                 {statusMessage}
               </p>
@@ -140,7 +165,6 @@ export function AccordionSection({ defaultOpen = true }: AccordionSectionProps) 
           </>
         )}
 
-        {/* ── Complete ────────────────────────────────────────── */}
         {flowState === "complete" && (
           <div className="flex flex-col items-center gap-3 py-2 text-center">
             <CircleCheck
@@ -151,7 +175,11 @@ export function AccordionSection({ defaultOpen = true }: AccordionSectionProps) 
             <p className="font-semibold text-gray-900 dark:text-gray-100">
               Welcome, {completionName}!
             </p>
-            <p className="text-sm text-gray-500 dark:text-gray-400">
+            <p
+              ref={completeRef}
+              tabIndex={-1}
+              className="text-sm text-gray-500 dark:text-gray-400 focus:outline-none"
+            >
               Your bank account has been linked successfully.
             </p>
             <button
@@ -164,11 +192,14 @@ export function AccordionSection({ defaultOpen = true }: AccordionSectionProps) 
           </div>
         )}
 
-        {/* ── Failed ──────────────────────────────────────────── */}
         {flowState === "failed" && (
           <div className="flex flex-col items-center gap-3 py-2 text-center">
             <CircleX size={40} className="text-red-400" strokeWidth={1.5} />
-            <p className="text-sm text-gray-500 dark:text-gray-400">
+            <p
+              ref={failedRef}
+              tabIndex={-1}
+              className="text-sm text-gray-500 dark:text-gray-400 focus:outline-none"
+            >
               {statusMessage}
             </p>
             <Button variant="secondary" onClick={reset}>
