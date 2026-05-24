@@ -55,14 +55,4 @@
     background: var(--btn-s-bg-active);
     box-shadow: var(--btn-s-shadow-active);
   }
-
-  [data-theme="dark"] .btn-primary {
-    --tw-ring-color: var(--btn-p-ring-color);
-    --tw-ring-offset-color: var(--btn-p-ring-offset);
-  }
-
-  [data-theme="dark"] .btn-secondary {
-    --tw-ring-color: var(--btn-s-ring-color);
-    --tw-ring-offset-color: var(--btn-s-ring-offset);
-  }
 }

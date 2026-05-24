@@ -1,5 +1,5 @@
 import { Sun, Moon } from "lucide-react";
-import { useTheme } from "../../lib/useTheme";
+import { useTheme } from "../../lib/store/useTheme";
 import { cn } from "../../lib/cn";
 
 export function Header() {
@@ -8,18 +8,12 @@ export function Header() {
 
   return (
     <header
-      style={{
-        backgroundColor: "var(--color-header-bg)",
-        borderBottomColor: "var(--color-header-border)",
-        backdropFilter: "blur(12px)",
-        WebkitBackdropFilter: "blur(12px)",
-      }}
-      className="fixed inset-x-0 top-0 z-50 flex h-14 items-center justify-between border-b px-5"
+      className={cn(
+        "fixed inset-x-0 top-0 z-50 flex h-14 items-center justify-between border-b px-5",
+        "bg-(--color-header-bg) border-(--color-header-border) backdrop-blur-[12px]",
+      )}
     >
-      <span
-        style={{ color: "var(--color-billogram)" }}
-        className="text-base font-bold tracking-tight transition-colors duration-250"
-      >
+      <span className="text-base font-bold tracking-tight text-(--color-billogram) transition-colors duration-250">
         Billogram
       </span>
 

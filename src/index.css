@@ -17,9 +17,13 @@
   --color-border: #e5e7eb;
   --color-text-primary: #111827;
   --color-billogram: #4623b4;
-  --color-text-muted: #040405;
+  --color-text-muted: #6b7280;
   --color-header-bg: rgba(255, 255, 255, 0.85);
   --color-header-border: #e5e7eb;
+
+  /* icon colours */
+  --color-icon-payment: #3b82f6; /* blue-500 */
+  --color-icon-trust: #16a34a;   /* green-600 */
 
   /* primary button — dark pill on light bg */
   --btn-p-color: #ffffff;
@@ -67,6 +71,10 @@
   --color-text-muted: #d1d5db;
   --color-header-bg: rgba(24, 24, 29, 0.85);
   --color-header-border: #2c2c36;
+
+  /* icon colours */
+  --color-icon-payment: #60a5fa; /* blue-400 */
+  --color-icon-trust: #4ade80;   /* green-400 */
 
   /* button ring colors */
   --btn-p-ring-color: #e5e7eb;

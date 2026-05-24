@@ -17,7 +17,7 @@ export function AccordionRoot({
     <AccordionContext.Provider value={{ isOpen, setIsOpen, headerId, panelId }}>
       <div
         className={cn(
-          "rounded-2xl border border-gray-100 bg-white shadow-sm dark:border-[#2c2c36] dark:bg-[#5b5b61]",
+          "rounded-2xl border bg-white shadow-sm border-(--color-border) dark:bg-(--color-surface)",
           className,
         )}
       >

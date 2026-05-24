@@ -108,7 +108,7 @@ The trigger button uses `focus-visible:ring` rather than `focus:ring` to show a 
 **Positive**
 - A new page can use `<Accordion>` with entirely different content without touching the component.
 - WAI-ARIA compliance is guaranteed by construction — callers cannot break the ARIA contract.
-- Animaton respects `prefers-reduced-motion` without JavaScript media-query listeners.
+- Animation respects `prefers-reduced-motion` without JavaScript media-query listeners.
 
 **Negative / trade-offs**
 - Sub-components must always be used inside `<Accordion>` — `useAccordion` throws if the context is missing. This is intentional (fail fast), but it means the parts are not independently reusable.
