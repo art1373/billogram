@@ -7,6 +7,7 @@ export function AccordionRoot({
   defaultOpen = false,
   children,
   className,
+  isLoading = false,
 }: AccordionProps) {
   const [isOpen, setIsOpen] = useState(defaultOpen);
   const uid = useId();
@@ -14,7 +15,7 @@ export function AccordionRoot({
   const panelId = `${uid}-panel`;
 
   return (
-    <AccordionContext.Provider value={{ isOpen, setIsOpen, headerId, panelId }}>
+    <AccordionContext.Provider value={{ isOpen, setIsOpen, headerId, panelId, isLoading }}>
       <div
         className={cn(
           "rounded-2xl border bg-white shadow-sm border-(--color-border) dark:bg-(--color-surface)",
