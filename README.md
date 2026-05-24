@@ -1,6 +1,6 @@
-# Billogram — Bank Account Connection Accordion
+# Billogram 
 
-A React/TypeScript implementation of the "Betala och koppla bankkonto" accordion UI component, built with accessibility, reusability, and testability as first-class concerns.
+A React/TypeScript implementation of the BandID accordion UI component, built with accessibility, reusability, and testability as first-class concerns.
 
 ## Tech stack
 
@@ -9,6 +9,7 @@ A React/TypeScript implementation of the "Betala och koppla bankkonto" accordion
 - **Lucide React** (icons)
 - **Jest 30** + **React Testing Library** (unit & integration tests)
 - **Vite 8** (dev server + build)
+- **Playwright** (as e2e test runner)
 - **CircleCI** (CI pipeline)
 
 ## Getting started
@@ -43,9 +44,13 @@ yarn test:watch
 
 # With coverage report
 yarn test:coverage
-```
 
-Coverage output lands in `./coverage/`.
+# run e2e tests
+yarn e2e
+
+# run e2e tests with interface
+yarn e2e:ui
+```
 
 ### Production build
 
@@ -74,6 +79,7 @@ src/
 └── pages/
     └── Invoice/
         └── InvoicePage.tsx          # Page shell
+|e2e/invoicePage.spec.ts
 ```
 
 ---
@@ -109,6 +115,7 @@ Feature component that composes `Accordion` and `Button` via the children prop �
 | Focus ring | `focus-visible:ring-*` — shown only for keyboard navigation |
 | Decorative icons | `aria-hidden="true"` on icon wrappers |
 | List semantics | Benefits rendered as `<ul>` with `aria-label="Benefits"` |
+| Focus a11y | The bank id status messages gets focused so user can track | ref handling
 
 ---
 
@@ -118,5 +125,4 @@ Feature component that composes `Accordion` and `Button` via the children prop �
 
 1. **test** — type-check → lint → jest (with JUnit reporter + coverage artifact)
 2. **build** — production Vite build (runs only after `test` passes)
-
-To connect the project, push to a GitHub/Bitbucket repo and enable the project in the [CircleCI dashboard](https://app.circleci.com).
+3. **playwright** - running playwright tests
