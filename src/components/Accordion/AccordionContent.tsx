@@ -1,4 +1,4 @@
-import { cn } from "../../../../../lib/cn";
+import { cn } from "../../lib/cn";
 import { useAccordion } from "./AccordionContext";
 import type { AccordionContentProps } from "./Accordion.types";
 

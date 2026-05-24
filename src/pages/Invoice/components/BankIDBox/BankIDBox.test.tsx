@@ -1,12 +1,11 @@
 import { render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { AccordionSection } from "./AccordionSection";
+import { BankIDBox } from "./BankIDBox";
 
-const setup = (
-  props?: Partial<React.ComponentProps<typeof AccordionSection>>,
-) => render(<AccordionSection {...props} />);
+const setup = (props?: Partial<React.ComponentProps<typeof BankIDBox>>) =>
+  render(<BankIDBox {...props} />);
 
-describe("AccordionSection", () => {
+describe("BankIDBox", () => {
   describe("rendering", () => {
     it("renders the section title", () => {
       setup();

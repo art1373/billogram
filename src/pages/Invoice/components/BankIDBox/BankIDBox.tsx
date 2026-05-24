@@ -6,10 +6,10 @@ import {
   Rocket,
   ShieldCheck,
 } from "lucide-react";
-import { Accordion } from "./Accordion/Accordion";
+import { Accordion } from "../../../../components/Accordion/Accordion";
 import { Button } from "../../../../components/Button/Button";
 import { InfoItem } from "./InfoItem/InfoItem";
-import type { AccordionSectionProps } from "./AccordionSection.types";
+import type { AccordionSectionProps } from "./BankIDBox.types";
 import {
   cancel,
   collect,
@@ -26,9 +26,7 @@ const linkValueForTracking =
 
 type FlowState = "idle" | "loading" | "complete" | "failed";
 
-export function AccordionSection({
-  defaultOpen = true,
-}: AccordionSectionProps) {
+export function BankIDBox({ defaultOpen = true }: AccordionSectionProps) {
   const [flowState, setFlowState] = useState<FlowState>("idle");
   const [statusMessage, setStatusMessage] = useState<string>("");
   const [completionName, setCompletionName] = useState<string>("");
